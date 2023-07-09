@@ -14,6 +14,14 @@ Query =>>>>	db.topics.aggregate([
     					{"task.deadline_date":{$gte:ISODate('2023-10-01'),$lte:ISODate('2023-10-31')}}
  				     ]
 				}
+			},
+			{$project:{
+				task_id:0
+				}
+			},
+			{$project:{
+				"task":{"topic_id":0}
+				}
 			}
 			]);
 
@@ -40,8 +48,13 @@ Query=>>>>	db.companydrives.aggregate([
   					as: "student"
 					}
 				},{$project:{
-					"student":{_id:0,userid:0}
-				}}]);
+					userid:0
+					}
+				},{$project:{
+  					student:{_id:0}
+					}
+				}
+				]);
 
 
 
